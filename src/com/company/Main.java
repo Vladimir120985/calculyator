@@ -13,6 +13,12 @@ public class Main {
         //критерий для деления - пробел
         String[] words = str.split(" ");
 
+        if(words.length > 3){
+            System.out.println("Чувак. ты ввел слишком много цифр для расчетов!!!");
+            System. exit(0);
+        }
+
+
         //создадим логические флажки, для определения в дальнейшем введеных значений
         boolean flagArabic1 = false, flagArabic2 = false, flagRoman1 = false, flagRoman2 = false, flagZnak = false;
         //создадим массив римских цифр

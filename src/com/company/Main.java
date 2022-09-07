@@ -8,14 +8,18 @@ public class Main {
         // считываем из консоли выражение
         Scanner console = new Scanner(System.in);
         String str = console.nextLine();
+        System.out.println(calc(str));
+    }
+
+
+    public static String calc(String input) {
 
         //делим выражение на составные части и запихиваем в массив
         //критерий для деления - пробел
-        String[] words = str.split(" ");
+        String[] words = input.split(" ");
 
-        if(words.length > 3){
-            System.out.println("Чувак. ты ввел слишком много цифр для расчетов!!!");
-            System. exit(0);
+        if (words.length > 3) {
+            return "Чувак. ты ввел слишком много цифр для расчетов!!!";
         }
 
 
@@ -39,8 +43,7 @@ public class Main {
             flagZnak = true; //если является, включаем флажок
         }else{
             //прекращение работы программы в случае некорректного ввода
-            System.out.println("Некорректный символ математической операции");
-            System. exit(0);
+            return "Чувак ты че творишь? Ты хде видал такие математические знаки?";
         }
 
         //проверяем первое выражение является ли оно числом
@@ -50,8 +53,7 @@ public class Main {
             if(Integer.parseInt(words[0]) < 11){
                 flagArabic1 = true; //если является числом и меньше 10, включаем флажок
             } else {
-                System.out.println("Первое число больше 10");
-                System. exit(0); //прекращение работы программы
+                return "Чувак, нафига ввел первое число больше 10 ????";
             }
         }
 
@@ -62,14 +64,12 @@ public class Main {
             if(Integer.parseInt(words[2]) < 11) {
                 flagArabic2 = true; //если является числом и меньше 10, включаем флажок
             }else {
-                System.out.println("Второе число больше 10");
-                System. exit(0); //прекращение работы программы
+                return "Чувак, нафига ввел второе число больше 10 ????";
             }
         }
 
         if(flagArabic1 == true & flagArabic2 == false | flagArabic1 == false & flagArabic2 == true){
-            System.out.println("Операции с арабскими и римскими цифрами одновременно недопустимы");
-            System. exit(0); //прекращение работы программы
+            return "Чувак, ну хде это видано складывать римские цифры с арабскими ????";
         }
 
 
@@ -87,24 +87,23 @@ public class Main {
         }
 
         if (flagArabic1 == false & flagArabic2 == false & flagRoman1 == false & flagRoman2 == false){
-            System.out.println("Некорректный ввод условия");
-            System. exit(0); //прекращение работы программы
+            return "Че за хрень ты ввел ???? Ничего не понятно";
         }
 
         //расчеты с арабскими цифрами
         if(flagZnak == true & flagArabic1 == true & flagArabic2 == true){
             if (words[1].equals("-")){
                 int result = Integer.parseInt(words[0])  - Integer.parseInt(words[2]);
-                System.out.println(result);
+                return Integer.toString(result);
             }else if (words[1].equals("+")){
                 int result = Integer.parseInt(words[0])  + Integer.parseInt(words[2]);
-                System.out.println(result);
+                return Integer.toString(result);
             }else if (words[1].equals("*")){
                 int result = Integer.parseInt(words[0])  * Integer.parseInt(words[2]);
-                System.out.println(result);
+                return Integer.toString(result);
             }else if (words[1].equals("/")){
                 int result = Integer.parseInt(words[0])  / Integer.parseInt(words[2]);
-                System.out.println(result);
+                return Integer.toString(result);
             }
         }
 
@@ -162,25 +161,26 @@ public class Main {
             if (words[1].equals("-")){
                 int result = value1 - value2;
                     if (result < 0){
-                        System.out.println("Отрицательных чисел в римском исчислени нет");
+                        return "Чувак, отрицательных чисел в римском исчислени нет";
                     }else {
                         System.out.println(roman[result]);
                     }
             }else if (words[1].equals("+")){
                 int result = value1 + value2;
-                System.out.println(roman[result]);
+                return roman[result];
             }else if (words[1].equals("*")){
                 int result = value1 * value2;
-                System.out.println(roman[result]);
+                return roman[result];
             }else if (words[1].equals("/")){
                 int result = value1 / value2;
-                System.out.println(roman[result]);
+                return roman[result];
             }
         }
 
 
-
-
-
+        return "Что-то пошло не так. если программа дошла до сюда";
     }
+
+
 }
+
